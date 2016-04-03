@@ -73,7 +73,6 @@ passport.deserializeUser(function(user, done) {
 });
 
 app.use(function (req, res, next) {
-  console.log(req.session.passport.user, "sssssssssssss");
   req.user = req.session.passport.user
   res.locals.user = req.session.passport.user
   next()

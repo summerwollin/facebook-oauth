@@ -4,7 +4,7 @@ var unirest = require('unirest');
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
-  res.render('index', { profile: response.body });
+  res.render('index');
 });
 
 module.exports = router;
