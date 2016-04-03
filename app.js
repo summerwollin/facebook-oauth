@@ -46,7 +46,7 @@ app.get('/auth/facebook/callback',
 passport.use(new Strategy({
   clientID: process.env.CLIENT_ID,
   clientSecret: process.env.CLIENT_SECRET,
-  callbackURL: 'http://localhost:3000/login/facebook/return'
+  callbackURL: process.env.HOST + '/auth/facebook/callback'
   // profileFields: ['id', 'displayName', 'photos', 'email']
   // enableProof: true
   // scope: ['r_emailaddress', 'r_basicprofile'],
