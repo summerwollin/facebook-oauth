@@ -73,20 +73,20 @@ passport.deserializeUser(function(user, done) {
   done(null, user)
 });
 
-app.use(function (req, res, next) {
-  req.user = req.session.passport.user
-  res.locals.user = req.session.passport.user
-  next()
-})
+// app.use(function (req, res, next) {
+//   req.user = req.session.passport.user
+//   res.locals.user = req.session.passport.user
+//   next()
+// })
 
 app.use('/', routes);
 app.use('/users', users);
 
-app.get('/logout', function(req, res){
-  req.session.passport.user = null;
-  req.logout();
-  res.redirect('/');
-});
+// app.get('/logout', function(req, res){
+//   req.session.passport.user = null;
+//   req.logout();
+//   res.redirect('/');
+// });
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
