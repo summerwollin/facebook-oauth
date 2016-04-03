@@ -6,7 +6,16 @@
   </head>
   <body>
     {{{body}}}
+    {{#if user}}
+      <p>
+        Hello {{user.displayName}}
+        |
+        <a href="/logout">Logout</a>
+      </p>
+    {{else}}
+      <p>
         <a href="/auth/facebook">Login</a>
       </p>
+    {{/if}}
   </body>
 </html>

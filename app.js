@@ -43,8 +43,7 @@ app.use(cookieSession({
 //     res.redirect('/');
 //   });
 app.get('/auth/facebook', passport.authenticate('facebook'), function(req, res){
-  // The request will be redirected to LinkedIn for authentication, so this
-  // function will not be called.
+
 });
 
 app.get('/auth/facebook/callback', passport.authenticate('facebook', {
@@ -73,11 +72,12 @@ passport.deserializeUser(function(user, done) {
   done(null, user)
 });
 
-// app.use(function (req, res, next) {
-//   req.user = req.session.passport.user
-//   res.locals.user = req.session.passport.user
-//   next()
-// })
+app.use(function (req, res, next) {
+  console.log(req.session.passport.user, "sssssssssssss");
+  req.user = req.session.passport.user
+  res.locals.user = req.session.passport.user
+  next()
+})
 
 app.use('/', routes);
 app.use('/users', users);
