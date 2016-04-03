@@ -30,18 +30,27 @@ app.use(passport.initialize());
 app.use(cookieSession({
   name: 'user',
   secret: process.env.CLIENT_SECRET,
-  keys: ['key1', 'key2']
+  // keys: ['key1', 'key2']
 }));
 
-app.get('/auth/facebook',
-  passport.authenticate('facebook'));
+// app.get('/auth/facebook',
+//   passport.authenticate('facebook'));
+//
+// app.get('/auth/facebook/callback',
+//   passport.authenticate('facebook', { failureRedirect: '/login' }),
+//   function(req, res) {
+//     // Successful authentication, redirect home.
+//     res.redirect('/');
+//   });
+app.get('/auth/facebook', passport.authenticate('facebook'), function(req, res){
+  // The request will be redirected to LinkedIn for authentication, so this
+  // function will not be called.
+});
 
-app.get('/auth/facebook/callback',
-  passport.authenticate('facebook', { failureRedirect: '/login' }),
-  function(req, res) {
-    // Successful authentication, redirect home.
-    res.redirect('/');
-  });
+app.get('/auth/facebook/callback', passport.authenticate('facebook', {
+  successRedirect: '/',
+  failureRedirect: '/login'
+}));
 
 passport.use(new Strategy({
   clientID: process.env.CLIENT_ID,
